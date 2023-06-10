@@ -1,0 +1,21 @@
+<div class="container">
+  <blockquote>
+    By failing to prepare, you're preparing to fail. ~Benjamin Franklin
+  </blockquote>
+
+  <div class="task-input">
+    <input type="text" name="task" id="task" [(ngModel)]="task" />
+    <button (click)="onSubmit()">Submit</button>
+    <p *ngIf="formSubmissionMsg !== ''">{{ formSubmissionMsg }}</p>
+  </div>
+
+  <ul>
+    <li *ngFor="let task of tasks; let id = index">
+      {{ task.taskDate | date : "dd/MM/yyyy" }}
+      {{ task.task }}
+      {{ task.completed }}
+      <button (click)="onComplete(id)">Complete</button>
+      <button (click)="onDelete(id)">Delete</button>
+    </li>
+  </ul>
+</div>
