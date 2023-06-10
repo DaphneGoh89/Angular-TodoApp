@@ -40,3 +40,8 @@ button {
   border: none;
   padding: 1rem 2rem;
 }
+
+button:disabled {
+  color: grey;
+  pointer-events: none;
+}

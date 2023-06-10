@@ -32,36 +32,40 @@
       <div>
         <!-- edit button -->
         <button
-          id="edit"
+          class="edit"
           *ngIf="!task.inEditMode"
           (click)="onEdit(id)"
           [disabled]="task.completed"
         >
-          Edit
+          <ng-icon name="heroPencilSquare"></ng-icon>
         </button>
 
         <!-- save button -->
         <button
           *ngIf="task.inEditMode"
-          id="save"
+          class="save"
           (click)="onSaveEdit(id)"
           [disabled]="task.completed"
         >
-          Save
+          <ng-icon name="ionSaveOutline"></ng-icon>
         </button>
 
         <!-- complete task button -->
         <button
-          id="complete"
+          class="complete"
           (click)="onComplete(id)"
-          [disabled]="task.completed"
+          [disabled]="task.completed || task.inEditMode"
         >
-          Complete
+          <ng-icon name="heroCheck"></ng-icon>
         </button>
 
         <!-- delete task button -->
-        <button id="delete" (click)="onDelete(id)" [disabled]="task.completed">
-          Delete
+        <button
+          class="delete"
+          (click)="onDelete(id)"
+          [disabled]="task.completed || task.inEditMode"
+        >
+          <ng-icon name="heroTrash"></ng-icon>
         </button>
       </div>
     </li>
