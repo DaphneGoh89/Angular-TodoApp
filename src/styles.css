@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --mintyGreenDark: rgb(192, 223, 211);
+  --mintyGreenLight: rgb(218, 233, 224);
+  --greenLight: rgb(233, 244, 229);
+  --greenDark: rgb(97, 162, 105);
+  --orangeLight: rgb(253, 241, 213);
+  --orangeDark: rgb(243, 187, 71);
+  --redDark: rgb(208, 54, 67);
+  --redLight: rgb(245, 223, 223);
+}
+
+body {
+  border: 0;
+  padding: 0;
+  max-width: 100vw;
+  background-color: var(--mintyGreenDark);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+blockquote {
+  color: white;
+}
+
+input {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  padding: 1rem 1rem;
+  border: none;
+  outline: none;
+}
+
+button {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border: none;
+  padding: 1rem 2rem;
+}

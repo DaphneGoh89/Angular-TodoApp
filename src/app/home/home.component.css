@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* input form */
+.task-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-input input {
+  width: 90%;
+}
+
+.task-input button {
+  width: 20;
+}
+
+.message {
+  font-size: 0.7rem;
+  padding-left: 1rem;
+  color: var(--greenDark);
+}
+
+.message.error {
+  color: var(--redDark);
+}
+
+/* List of tasks */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul input {
+  border-radius: 0;
+}
+
+.task {
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--orangeDark);
+  background-color: var(--orangeLight);
+}
+
+.task.completed {
+  border-color: var(--greenDark);
+  background-color: var(--greenLight);
+}
+
+.task button {
+  border-radius: 0;
+  color: black;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: transparent;
+}
+
+.task button:hover {
+  opacity: 0.6;
+}
+
+#complete {
+  color: var(--greenDark);
+}
+
+#delete {
+  color: var(--redDark);
+}
+
+.task.completed button {
+  color: grey;
+  pointer-events: none;
+}

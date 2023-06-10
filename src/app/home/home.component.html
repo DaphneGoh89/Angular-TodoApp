@@ -6,16 +6,64 @@
   <div class="task-input">
     <input type="text" name="task" id="task" [(ngModel)]="task" />
     <button (click)="onSubmit()">Submit</button>
-    <p *ngIf="formSubmissionMsg !== ''">{{ formSubmissionMsg }}</p>
   </div>
 
+  <p
+    class="message {{ submitResponse.isError ? 'error' : '' }}"
+    *ngIf="submitResponse.message !== ''"
+  >
+    {{ submitResponse.message }}
+  </p>
+
+  <!-- list of tasks -->
   <ul>
-    <li *ngFor="let task of tasks; let id = index">
+    <li
+      class="task {{ task.completed ? 'completed' : '' }}"
+      *ngFor="let task of tasks; let id = index"
+    >
       {{ task.taskDate | date : "dd/MM/yyyy" }}
-      {{ task.task }}
-      {{ task.completed }}
-      <button (click)="onComplete(id)">Complete</button>
-      <button (click)="onDelete(id)">Delete</button>
+      <input
+        id="{{ id }}"
+        type="text"
+        [(ngModel)]="task.task"
+        [disabled]="!task.inEditMode"
+      />
+
+      <div>
+        <!-- edit button -->
+        <button
+          id="edit"
+          *ngIf="!task.inEditMode"
+          (click)="onEdit(id)"
+          [disabled]="task.completed"
+        >
+          Edit
+        </button>
+
+        <!-- save button -->
+        <button
+          *ngIf="task.inEditMode"
+          id="save"
+          (click)="onSaveEdit(id)"
+          [disabled]="task.completed"
+        >
+          Save
+        </button>
+
+        <!-- complete task button -->
+        <button
+          id="complete"
+          (click)="onComplete(id)"
+          [disabled]="task.completed"
+        >
+          Complete
+        </button>
+
+        <!-- delete task button -->
+        <button id="delete" (click)="onDelete(id)" [disabled]="task.completed">
+          Delete
+        </button>
+      </div>
     </li>
   </ul>
 </div>

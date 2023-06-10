@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Response } from 'src/shared/models/Response';
 import { Task } from 'src/shared/models/Task';
 
 @Component({
@@ -8,14 +9,15 @@ import { Task } from 'src/shared/models/Task';
 })
 export class HomeComponent implements OnInit {
   task: string = '';
-  formSubmissionMsg = '';
+  submitResponse: Response = new Response();
   tasks: Task[] = [];
 
   ngOnInit(): void {}
 
   onSubmit() {
     if (this.task === '') {
-      this.formSubmissionMsg = 'Task cannot be empty.';
+      this.submitResponse.isError = true;
+      this.submitResponse.message = 'Task cannot be empty.';
       return;
     }
 
@@ -23,11 +25,19 @@ export class HomeComponent implements OnInit {
     newTask.task = this.task;
     this.tasks.push(newTask);
     this.task = '';
-    this.formSubmissionMsg = 'Task submitted successfully.';
+    this.submitResponse.message = 'Task submitted successfully.';
+  }
+
+  onEdit(id: number) {
+    if (!this.tasks[id].completed) this.tasks[id].inEditMode = true;
+  }
+
+  onSaveEdit(id: number) {
+    this.tasks[id].inEditMode = false;
   }
 
   onComplete(id: number) {
-    this.tasks[id].completed = true;
+    if (!this.tasks[id].completed) this.tasks[id].completed = true;
   }
 
   onDelete(id: number) {
