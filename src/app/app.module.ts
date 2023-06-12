@@ -12,6 +12,8 @@ import { ionSaveOutline } from '@ng-icons/ionicons';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { v4 as uuidv4 } from 'uuid';
+// import { GroupByDatePipe } from '../shared/pipes/GroupByDates.pipe';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],

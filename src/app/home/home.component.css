@@ -50,6 +50,19 @@ ul input {
   background-color: var(--orangeLight);
 }
 
+.task span {
+  flex: 1;
+}
+
+.task textarea {
+  flex: 4;
+}
+
+.task div {
+  flex: 1;
+  padding-left: 1rem;
+}
+
 .task.completed {
   border-color: var(--greenDark);
   background-color: var(--greenLight);
@@ -75,6 +88,7 @@ ul input {
 
 .task .save {
   color: var(--greenDark);
+  font-size: 1.3rem;
 }
 
 .task .complete {

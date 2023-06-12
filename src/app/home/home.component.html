@@ -16,58 +16,63 @@
   </p>
 
   <!-- list of tasks -->
+  <!-- <ul>
+    <li *ngFor="let group of taskGroupedByDate">
+      {{ group?.date | date : "dd/MM/yyyy" }} -->
+
   <ul>
     <li
-      class="task {{ task.completed ? 'completed' : '' }}"
-      *ngFor="let task of tasks; let id = index"
+      class="task {{ taskItem.completed ? 'completed' : '' }}"
+      *ngFor="let taskItem of tasks; let id = index"
     >
-      {{ task.taskDate | date : "dd/MM/yyyy" }}
-      <input
-        id="{{ id }}"
+      <span>
+        {{ taskItem.taskDate | date : "dd/MM/yyyy" }}
+      </span>
+
+      <textarea
+        id="{{ taskItem.taskId }}"
         type="text"
-        [(ngModel)]="task.task"
-        [disabled]="!task.inEditMode"
-      />
+        [disabled]="!taskItem.inEditMode"
+        [(ngModel)]="taskItem.task"
+      ></textarea>
 
       <div>
-        <!-- edit button -->
         <button
           class="edit"
-          *ngIf="!task.inEditMode"
-          (click)="onEdit(id)"
-          [disabled]="task.completed"
+          *ngIf="!taskItem.inEditMode"
+          (click)="onEdit(taskItem.taskId)"
+          [disabled]="taskItem.completed"
         >
           <ng-icon name="heroPencilSquare"></ng-icon>
         </button>
 
-        <!-- save button -->
         <button
-          *ngIf="task.inEditMode"
+          *ngIf="taskItem.inEditMode"
           class="save"
-          (click)="onSaveEdit(id)"
-          [disabled]="task.completed"
+          (click)="onSaveEdit(taskItem.taskId)"
+          [disabled]="taskItem.completed"
         >
           <ng-icon name="ionSaveOutline"></ng-icon>
         </button>
 
-        <!-- complete task button -->
         <button
           class="complete"
-          (click)="onComplete(id)"
-          [disabled]="task.completed || task.inEditMode"
+          (click)="onComplete(taskItem.taskId)"
+          [disabled]="taskItem.completed || taskItem.inEditMode"
         >
           <ng-icon name="heroCheck"></ng-icon>
         </button>
 
-        <!-- delete task button -->
         <button
           class="delete"
-          (click)="onDelete(id)"
-          [disabled]="task.completed || task.inEditMode"
+          (click)="onDelete(taskItem.taskId)"
+          [disabled]="taskItem.completed || taskItem.inEditMode"
         >
           <ng-icon name="heroTrash"></ng-icon>
         </button>
       </div>
     </li>
   </ul>
+  <!-- </li>
+  </ul> -->
 </div>
