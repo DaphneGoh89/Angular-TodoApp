@@ -48,20 +48,34 @@ ul input {
   padding-left: 1rem;
   border-left: 4px solid var(--orangeDark);
   background-color: var(--orangeLight);
+  border-bottom: 1px solid var(--orangeDark);
 }
 
-.task span {
-  flex: 1;
+.task-description {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
 }
 
-.task textarea {
+.task-description span {
+  margin-top: 0.8rem;
+  font-size: 0.6rem;
+  color: grey;
+}
+
+.task-description textarea {
+  padding-left: 0rem;
+  padding-top: 0.4rem;
+}
+
+/* .task textarea {
   flex: 4;
 }
 
 .task div {
   flex: 1;
   padding-left: 1rem;
-}
+} */
 
 .task.completed {
   border-color: var(--greenDark);

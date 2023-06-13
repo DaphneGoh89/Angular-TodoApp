@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tasks = this._taskService.getTasks();
+    this.getTasks();
   }
 
   onSubmit() {
@@ -39,11 +39,11 @@ export class HomeComponent implements OnInit {
     let newTask = new Task();
     newTask.task = this.task;
     newTask.taskId = uuidv4();
-    this._taskService.addTask(newTask);
-    // this.tasks.push(newTask);
-    // by right should have waited until success response is received before displaying success message
-    this.task = '';
-    this.submitResponse.message = 'Task submitted successfully.';
+    this._taskService.addTask(newTask).subscribe((res: Response) => {
+      this.submitResponse.message = res.message;
+      this.task = '';
+      this.getTasks();
+    });
   }
 
   onEdit(id: string) {
@@ -54,23 +54,38 @@ export class HomeComponent implements OnInit {
   onSaveEdit(id: string) {
     let index = this.tasks.findIndex((task) => task.taskId === id);
     let newTaskDescription = this.tasks[index].task;
-    this._taskService.editTask(id, newTaskDescription);
+    this._taskService.editTask(id, newTaskDescription).subscribe((res) => {
+      this.submitResponse.message = res.message;
+      this.getTasks();
+    });
     this.tasks[index].inEditMode = false;
   }
 
   onComplete(id: string) {
-    this._taskService.completeTask(id);
+    this._taskService.completeTask(id).subscribe((res) => {
+      this.submitResponse.message = res.message;
+      this.getTasks();
+    });
   }
 
   onDelete(id: string) {
     try {
-      this._taskService.deleteTask(id);
+      this._taskService.deleteTask(id).subscribe((res) => {
+        this.submitResponse.message = res.message;
+        this.getTasks();
+      });
     } catch (e: any) {
       console.log(e?.message);
     }
+  }
 
-    // let index = this.tasks.findIndex((task) => task.taskId === id);
-    // this.tasks.splice(index, 1);
+  private getTasks() {
+    this._taskService.getTasks().subscribe({
+      next: (response) => {
+        this.tasks = response.data;
+        console.log('lets see how many subscription we have...');
+      },
+    });
   }
 
   // groupTasksByDate(list: Array<Task>, property: string = 'taskDate'): any {

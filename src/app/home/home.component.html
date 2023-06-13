@@ -25,16 +25,18 @@
       class="task {{ taskItem.completed ? 'completed' : '' }}"
       *ngFor="let taskItem of tasks; let id = index"
     >
-      <span>
-        {{ taskItem.taskDate | date : "dd/MM/yyyy" }}
-      </span>
+      <div class="task-description">
+        <span>
+          {{ taskItem.taskDate | date : "dd/MM/yyyy" }}
+        </span>
 
-      <textarea
-        id="{{ taskItem.taskId }}"
-        type="text"
-        [disabled]="!taskItem.inEditMode"
-        [(ngModel)]="taskItem.task"
-      ></textarea>
+        <textarea
+          id="{{ taskItem.taskId }}"
+          type="text"
+          [disabled]="!taskItem.inEditMode"
+          [(ngModel)]="taskItem.task"
+        ></textarea>
+      </div>
 
       <div>
         <button
